@@ -5,7 +5,7 @@ use warnings;
 use base qw(VFSsimple::Base);
 use File::Copy ();
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 NAME
 
@@ -43,6 +43,11 @@ sub drv_open {
     } else {
         return;
     }
+}
+
+sub exists {
+    my ($self, $file) = @_;
+    return(stat("$self->{realroot}/$file") != 0);
 }
 
 1;
